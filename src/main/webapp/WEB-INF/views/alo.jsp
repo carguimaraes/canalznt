@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Teste  Alo</title>
+<title>Canal ZNT</title>
 </head>
 <body>
- <h1> Alo Teste Controller</h1>
+ <h1> Canal ZNT</h1>
 </body>
 </html>
