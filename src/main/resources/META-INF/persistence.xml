@@ -1,0 +1,35 @@
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/persistence
+     http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+    version="2.0">
+
+ <persistence-unit name="unitcanalznt">
+
+   <!-- provedor/implementacao do JPA -->
+   <provider>org.hibernate.ejb.HibernatePersistence</provider>
+
+   <!-- entidade mapeada // http://localhost:8088/jpamodelo/ola1 -->
+   <class>com.digicastservices.canalznt.model.entity.Membro</class>
+   <class>com.digicastservices.canalznt.model.entity.Associado</class>
+
+   <properties>
+  <!-- dados da conexao -->
+  <!-- 
+    Z  <property name="javax.persistence.jdbc.driver"    value="com.mysql.jdbc.Driver" />
+	Z  <property name="javax.persistence.jdbc.url"       value="jdbc:mysql://localhost/gma_db" />
+	Z  <property name="javax.persistence.jdbc.user"       value="root" />
+	Z  <property name="javax.persistence.jdbc.password"    value="" />
+    -->
+    
+   <!--  propriedades do hibernate -->
+   <property name="hibernate.dialect"      value="org.hibernate.dialect.MySQL5InnoDBDialect" />
+  <property name="hibernate.show_sql" value="true" />
+  <property name="hibernate.format_sql" value="true" />
+
+  <!--  atualiza o banco, gera as tabelas se for preciso -->
+  <property name="hibernate.hbm2ddl.auto" value="update" />  
+    
+   </properties>
+ </persistence-unit>
+</persistence>
