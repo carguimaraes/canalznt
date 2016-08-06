@@ -17,7 +17,6 @@ class AssociadoDao implements IAssociadoDao {
 	
 	@Transactional //(propagation = Propagation.REQUIRED)
 	 public void adicionar(Associado associado) {
-	    
 	      manager.persist(associado);
 	    
 	    }
