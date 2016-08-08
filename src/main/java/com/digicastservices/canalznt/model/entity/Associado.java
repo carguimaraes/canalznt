@@ -8,18 +8,17 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="associado_tb")
+@Table(name="ASSOCIADO_TB")
 public class Associado {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="id_associado")
+	@Column(name="ID_ASSOCIADO")
 	private Integer id;
  
-	@Column(name="nome")	
+	@Column(name="NOME")	
 	private String  nome;
- 
- 
+	
 	public Integer getId() {
 		return id;
 	}

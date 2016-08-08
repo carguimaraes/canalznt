@@ -2,20 +2,19 @@ package com.digicastservices.canalznt.webapi.dto;
 
 public class AssociadoDto {
 
-	private long id;
-	public long getId() {
-		return id;
-	}
-	public void setId(long id) {
-		this.id = id;
-	}
+	public long id;
+	public String nome;
+	public String  cnpj;
+	public long  latitude;
+	public long  longitude;
+	public String  cep;
+/*	
 	public String getNome() {
 		return nome;
 	}
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	private String nome;
 	
-	
+	*/
 }
