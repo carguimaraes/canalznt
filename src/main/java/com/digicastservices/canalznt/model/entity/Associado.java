@@ -23,7 +23,7 @@ public class Associado {
 		return id;
 	}
  
-	private void setId(Integer id) {
+	private void setId(long id) {
 		this.id = id;
 	}
  

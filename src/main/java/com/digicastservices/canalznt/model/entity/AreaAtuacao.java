@@ -14,16 +14,16 @@ public class AreaAtuacao
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="ID_AREA_ATUACAO")
-	private Integer id;
+	private long id;
  
 	@Column(name="NOME")	
 	private String  nome;
 	
-	public Integer getId() {
+	public long getId() {
 		return id;
 	}
  
-	private void setId(Integer id) {
+	private void setId(long  id) {
 		this.id = id;
 	}
  
