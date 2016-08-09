@@ -45,34 +45,32 @@ public class AssociadoController {
          return new ResponseEntity<Object>(s.ObterRetorno(), s.ObterHttpStatusCode());
     }
 	
-	    @RequestMapping(value = "/associados/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	    public ResponseEntity<Object> getAssociado(@PathVariable("id") long id) {
-		 
-	    	 ApiServiceRetorno s=  _associadoWebApiService.getAssociado(id);
-	    	 
-	    	 return new ResponseEntity<Object>(s.ObterRetorno(), s.ObterHttpStatusCode());
-	    }
+    @RequestMapping(value = "/associados/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Object> getAssociado(@PathVariable("id") long id) 
+    {
+	  	 ApiServiceRetorno s=  _associadoWebApiService.getAssociado(id);
+	   	 return new ResponseEntity<Object>(s.ObterRetorno(), s.ObterHttpStatusCode());
+	 }
 	 
-	
-	
+	//Para teste na ferramenta Rest
+    // Deve ser colocado no Header
+    //  Content-Type - application/json
+	//
     @RequestMapping(value = "/associados/", method = RequestMethod.POST,  consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Void> criarAssociado(@RequestBody AssociadoDto associadoDto) {
-		 
-    	_associadoWebApiService.novoAssociado(associadoDto);
-	      //  System.out.println("Creating User " + user.getName());
-	 
-	     //   if (userService.isUserExist(user)) {
-	     //       System.out.println("A User with name " + user.getName() + " already exist");
-	     //       return new ResponseEntity<Void>(HttpStatus.CONFLICT);
-	     //   }
-	 
-	    //    userService.saveUser(user);
-	 
-	      //  HttpHeaders headers = new HttpHeaders();
-	      //  headers.setLocation(ucBuilder.path("/user/{id}").buildAndExpand("1"));
-	        return new ResponseEntity<Void>( HttpStatus.CREATED);
-	    }
+    public ResponseEntity<Object>criarAssociado(@RequestBody AssociadoDto associadoDto) 
+    {
+	 ApiServiceRetorno s=  _associadoWebApiService.criarAssociado(associadoDto);
+	     
+     return new ResponseEntity<Object>(s.ObterRetorno(), s.ObterHttpStatusCode());
+	 }
     
+    @RequestMapping(value = "/associados/{id}", method = RequestMethod.PUT,  consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Object>alterarAssociado(@RequestBody AssociadoDto associadoDto,@PathVariable("id") long id) 
+    {
+	 ApiServiceRetorno s=  _associadoWebApiService.alterarAssociado(associadoDto,id);
+	     
+     return new ResponseEntity<Object>(s.ObterRetorno(), s.ObterHttpStatusCode());
+	 }
     
 
 

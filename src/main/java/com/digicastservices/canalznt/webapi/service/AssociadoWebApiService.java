@@ -17,28 +17,69 @@ import com.digicastservices.canalznt.webapi.dto.AssociadoDto;
 @Service
 public class AssociadoWebApiService {
 	
-	 @Autowired
-      private  IAssociadoDao dao;
+	// @Autowired
+    //  private  IAssociadoDao dao;
   
       @Autowired
-      private  IAssociadoRepositorio repositorio;
-      
-      
+      private  IAssociadoRepositorio _repositorio;
+            
 	
-	public void novoAssociado(AssociadoDto associadoDto)
+	public  ApiServiceRetorno criarAssociado(AssociadoDto associadoDto)
 	{
 		 Associado a= new Associado();
 		 a.setNome(associadoDto.nome);
 	 
-		 repositorio.save(a);
+		 
+		 //TODO verificar CNPJ
+	   //  if (_repositorio.exists(1L)) 
+	   //  {
+	   // 	return ApiServiceRetorno.getApiServiceRetorno(HttpStatus.CONFLICT, new String[] {"CNPJ ja cadastrado"});
+	   //   
+	   //   }
+	 
+	   
+	      //  headers.setLocation(ucBuilder.path("/user/{id}").buildAndExpand("1"));
+		 		 
+		 
+		 _repositorio.save(a);
 		
-		// dao.adicionar(a);
+		return ApiServiceRetorno.getApiServiceRetorno(HttpStatus.CREATED , null);
 	}
+	
+	
+	public  ApiServiceRetorno alterarAssociado(AssociadoDto associadoDto, long id)
+	{
+		   Associado a=  _repositorio.findOne(id);
+		   if(a==null)
+		   {
+			   return ApiServiceRetorno.FalhaRetornoVazioOuNaoEncontrado(new String[] {"Associado não encontrado"});
+		   }
+		 
+		 
+		 
+		 a.setNome(associadoDto.nome);
+		 
+	 
+		 
+		 //TODO verificar CNPJ
+	   //  if (_repositorio.exists(1L)) 
+	   //  {
+	   // 	return ApiServiceRetorno.getApiServiceRetorno(HttpStatus.CONFLICT, new String[] {"CNPJ ja cadastrado"});
+	   //   
+	   //   }
+	 	 		 
+		 
+		 _repositorio.save(a);
+		
+		return ApiServiceRetorno.getApiServiceRetorno(HttpStatus.OK , null);
+	}
+	
+	
 	
 	public ApiServiceRetorno getListaAssociado()
 	{
 		
-		List<Associado> lista =repositorio.findAll();
+		List<Associado> lista =_repositorio.findAll();
 		List<AssociadoDto> listadto = new  ArrayList<AssociadoDto>(); 
 		
 		for(Associado a : lista)
@@ -67,7 +108,7 @@ public class AssociadoWebApiService {
 	public ApiServiceRetorno getAssociado(long id)
 	{
 		
-		   Associado a=  repositorio.findOne(id);
+		   Associado a=  _repositorio.findOne(id);
 		   if(a==null)
 		   {
 			   return ApiServiceRetorno.FalhaRetornoVazioOuNaoEncontrado(new String[] {"Associado não encontrado"});
