@@ -3,6 +3,7 @@ package com.digicastservices.canalznt.webapi.service;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +15,7 @@ import com.digicastservices.canalznt.webapi.dto.AssociadoDto;
  
 
 @Service
-public class AssociadoNovoService {
+public class AssociadoWebApiService {
 	
 	 @Autowired
       private  IAssociadoDao dao;
@@ -24,7 +25,7 @@ public class AssociadoNovoService {
       
       
 	
-	public void execute(AssociadoDto associadoDto)
+	public void novoAssociado(AssociadoDto associadoDto)
 	{
 		 Associado a= new Associado();
 		 a.setNome(associadoDto.nome);
@@ -34,7 +35,7 @@ public class AssociadoNovoService {
 		// dao.adicionar(a);
 	}
 	
-	public List<AssociadoDto> getLista()
+	public ApiServiceRetorno getListaAssociado()
 	{
 		
 		List<Associado> lista =repositorio.findAll();
@@ -48,7 +49,36 @@ public class AssociadoNovoService {
 		 listadto.add(dto);
 		}
 	    
-		return listadto;
+		if(listadto.isEmpty())
+		{
+		   return	ApiServiceRetorno.FalhaRetornoVazioOuNaoEncontrado(new String[] {"Informação não encontrada"});
+		}
+		else
+		{
+		  return	ApiServiceRetorno.Sucesso(listadto);
+		 	
+		}
+		
+		
+		
+		
 	}
 
+	public ApiServiceRetorno getAssociado(long id)
+	{
+		
+		   Associado a=  repositorio.findOne(id);
+		   if(a==null)
+		   {
+			   return ApiServiceRetorno.FalhaRetornoVazioOuNaoEncontrado(new String[] {"Associado não encontrado"});
+		   }
+	
+	        AssociadoDto associadoDto= new AssociadoDto();
+	        associadoDto.id=a.getId();
+	        associadoDto.nome=a.getNome();
+	       
+	        
+	        return ApiServiceRetorno.Sucesso(associadoDto);
+	}
+	
 }

@@ -18,7 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.digicastservices.canalznt.webapi.dto.AssociadoDto;
-import com.digicastservices.canalznt.webapi.service.AssociadoNovoService;
+import com.digicastservices.canalznt.webapi.service.ApiServiceRetorno;
+import com.digicastservices.canalznt.webapi.service.AssociadoWebApiService;
 
 
 
@@ -27,43 +28,29 @@ import com.digicastservices.canalznt.webapi.service.AssociadoNovoService;
 @RequestMapping("api/v1")
 public class AssociadoController {
 	
-	private  AssociadoNovoService novoService;
+	private  AssociadoWebApiService _associadoWebApiService;
 	
 	@Autowired
-	public void setAssociadoNovoService(AssociadoNovoService novoService)
+	public void setAssociadoNovoService(AssociadoWebApiService associadoWebApiService)
 	{
-		this.novoService=novoService;
+		this._associadoWebApiService=associadoWebApiService;
 	}
 	
 	@RequestMapping(value = "/associados/", method = RequestMethod.GET)
-    public ResponseEntity<List<AssociadoDto>> getListaAssociado() {
+    public ResponseEntity<Object> getListaAssociado() 
+	{
+	     
+		 ApiServiceRetorno s=  _associadoWebApiService.getListaAssociado();
 		 
-		 
-		 
-		 List<AssociadoDto> listaAssociado =novoService.getLista();
-		 
-		 if(listaAssociado.isEmpty())
-		 {
-	            return new ResponseEntity<List<AssociadoDto>>(HttpStatus.NOT_FOUND);
-	     }
-		 
-         return new ResponseEntity<List<AssociadoDto>>(listaAssociado, HttpStatus.OK);
+         return new ResponseEntity<Object>(s.ObterRetorno(), s.ObterHttpStatusCode());
     }
 	
 	    @RequestMapping(value = "/associados/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	    public ResponseEntity<AssociadoDto> getUser(@PathVariable("id") long id) {
+	    public ResponseEntity<Object> getAssociado(@PathVariable("id") long id) {
 		 
-	        System.out.println("Associado id " + id);
-	        AssociadoDto associadoDto= new AssociadoDto();
-	        associadoDto.nome="Retornado";
-	       /* 
-	        User user = userService.findById(id);
-	        if (user == null) {
-	            System.out.println("User with id " + id + " not found");
-	            return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
-	        }
-	        */
-	        return new ResponseEntity<AssociadoDto>(associadoDto, HttpStatus.OK);
+	    	 ApiServiceRetorno s=  _associadoWebApiService.getAssociado(id);
+	    	 
+	    	 return new ResponseEntity<Object>(s.ObterRetorno(), s.ObterHttpStatusCode());
 	    }
 	 
 	
@@ -71,7 +58,7 @@ public class AssociadoController {
     @RequestMapping(value = "/associados/", method = RequestMethod.POST,  consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Void> criarAssociado(@RequestBody AssociadoDto associadoDto) {
 		 
-		 novoService.execute(associadoDto);
+    	_associadoWebApiService.novoAssociado(associadoDto);
 	      //  System.out.println("Creating User " + user.getName());
 	 
 	     //   if (userService.isUserExist(user)) {
