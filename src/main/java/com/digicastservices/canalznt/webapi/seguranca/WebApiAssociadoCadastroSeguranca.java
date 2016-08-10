@@ -11,19 +11,20 @@ import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-@WebFilter("/*")
+//canalznt/api/
+@WebFilter("/api/*")
 public class WebApiAssociadoCadastroSeguranca implements Filter
 {
+	//X-CustomToken = GMA-1967
 	 public final String HEADER_SECURITY_TOKEN = "X-CustomToken"; 
 	
 	
 	public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException 
 	{ 
-		
-		 String token =((HttpServletRequest) req).getHeader(HEADER_SECURITY_TOKEN);
-		
-		  if(!token.equals("GMA-1967"))
+		 
+		  String token =((HttpServletRequest) req).getHeader(HEADER_SECURITY_TOKEN);
+		  System.out.println("------>"+token);
+		  if(!VerificaToken.isValido(token))
 		  {
 			  ((HttpServletResponse) res).sendError( HttpServletResponse.SC_UNAUTHORIZED, "Unauthorized" );
 		  }
@@ -31,19 +32,17 @@ public class WebApiAssociadoCadastroSeguranca implements Filter
 		  {
 			  chain.doFilter(req, res);  	  
 		  }
-		  
-		 
-		
 	 
 	}
 
-	public void destroy() {
+	public void destroy() 
+	{
 		// TODO Auto-generated method stub
 		
 	}
 
-	public void init(FilterConfig arg0) throws ServletException {
+	public void init(FilterConfig arg0) throws ServletException 
+	{
 		// TODO Auto-generated method stub
-		
 	} 
 }
