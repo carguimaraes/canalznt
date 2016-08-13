@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.digicastservices.canalznt.model.dao.IAreaAtuacaoRepositorio;
 import com.digicastservices.canalznt.model.entity.AreaAtuacao;
+import com.digicastservices.canalznt.model.service.AreaAtuacaoService;
 import com.digicastservices.canalznt.webapi.dto.AreaAtuacaoDto;
 
 
@@ -17,16 +18,30 @@ public class AreaAtuacaoWebApiService
 {
  
 	 @Autowired
-     private  IAreaAtuacaoRepositorio _repositorio;
+	 private  AreaAtuacaoService _areaAtuacaoService;
+	 @Autowired
+	  private  IAreaAtuacaoRepositorio _repositorio;
 	 
-	 public  ApiServiceRetorno criarAreaAtuacao(AreaAtuacaoDto areaAtuacaoDto)
+	  public  ApiServiceRetorno criarAreaAtuacao(AreaAtuacaoDto areaAtuacaoDto)
 		{
 			 AreaAtuacao a= new AreaAtuacao();
 			 a.setNome(areaAtuacaoDto.nome);
 		 	 
-			 _repositorio.save(a);
+			 _areaAtuacaoService.novo(a);
 			
-			return ApiServiceRetorno.getApiServiceRetorno(HttpStatus.CREATED , null);
+			if( _areaAtuacaoService.getListaMsg().isEmpty())
+			{
+				return ApiServiceRetorno.getApiServiceRetorno(HttpStatus.CREATED , null);
+			}
+			else
+			{
+				
+				return ApiServiceRetorno.FalhaValidacaoSolicitacao(
+						 _areaAtuacaoService.getListaMsg().toArray(new String[_areaAtuacaoService.getListaMsg().size()])
+						);
+			}
+			
+			
 		}
 		
 		
@@ -45,8 +60,7 @@ public class AreaAtuacaoWebApiService
 			
 			return ApiServiceRetorno.getApiServiceRetorno(HttpStatus.OK , null);
 		}
-		
-		
+				
 		
 		public ApiServiceRetorno getListaAreaAtuacao()
 		{
