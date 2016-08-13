@@ -38,14 +38,14 @@ public class AreaAtuacaoService
   public void novo(AreaAtuacao areaAtuacao)
   {
 	  
-    if(!validar(areaAtuacao)) return;
+    if(!validar(areaAtuacao.getNome())) return;
 	  
 	 _repositorio.save(areaAtuacao);
   }
   
   public void alterar(long id, String nome)
   {
-	  
+	 
 	  AreaAtuacao areaAtuacao=   _repositorio.findOne(id);
 	  
 	  if(areaAtuacao==null)
@@ -55,35 +55,38 @@ public class AreaAtuacaoService
 		  return;
 	  }
 	  
-	  //TODO busca Is
+	  if(!validar(nome)) return;
+	
+	  areaAtuacao.setNome(nome);
+	  _repositorio.save(areaAtuacao);
 	  
   }
   
   
   
-  private boolean validar(AreaAtuacao areaAtuacao)
+  private boolean validar(String nome)
   {
 	   boolean isOk=true;
 	  _listaMsg= new ArrayList<String>(); 
 	  
-	  if(areaAtuacao.getNome()==null)
+	  if(nome==null)
 	  {
 		  _listaMsg.add(NOME_N_INFORMADO);
 	      return false;
 	  }
 	  
-	  if( areaAtuacao.getNome().trim().isEmpty())
+	  if( nome.trim().isEmpty())
 	  {
 		  _listaMsg.add(NOME_N_INFORMADO);
 		  return false;
 	  }
 	  
-	  if(areaAtuacao.getNome().trim().length()<5)
+	  if(nome.trim().length()<5)
 	  {
 		  _listaMsg.add(NOME_PEQUENO);
 	  }
 	  
-	  if(areaAtuacao.getNome().trim().length()>100)
+	  if(nome.trim().length()>100)
 	  {
 		  _listaMsg.add(NOME_GRANDE);
 	  }

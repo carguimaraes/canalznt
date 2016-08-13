@@ -48,9 +48,9 @@ public class AreaAtuacaoServiceTest
 	public void  novo_falha_nome_nao_informado_null_lista_mensagem_nao_vazia()
 	{
 		
-		 _testaNomeVazio(null);
-		 _testaNomeVazio("");
-		 _testaNomeVazio(new String(new char[] {32}) );
+		 _testaNomeVazio(true,null);
+		 _testaNomeVazio(true,"");
+		 _testaNomeVazio(true,new String(new char[] {32}) );
 		
 	}
 	
@@ -130,17 +130,84 @@ public class AreaAtuacaoServiceTest
 			assertTrue(listaMsg.contains(AreaAtuacaoService.AREA_ATUACAO_N_ENCONTRADA));	
 	}
 	
-	
-	private void _testaNomeVazio(String nome)
+	@Test
+	public void alterar_falha_nome_nao_informado_null_lista_mensagem_nao_vazia()
 	{
-        AreaAtuacao areaAtuacao= new AreaAtuacao();
-        areaAtuacao.setNome(nome);
+		  when(_repositorioMock.findOne(anyLong())).
+		  thenReturn(new AreaAtuacao());
 		
-		_areaAtuacaoService.novo(areaAtuacao);
+		 _testaNomeVazio(false,null);
+		 _testaNomeVazio(false,"");
+		 _testaNomeVazio(false,new String(new char[] {32}) );
+	}
+	 
+	@Test
+	public void alterar_falha_nome_pequeno_mensagem_nao_vazia()
+	{
+		  when(_repositorioMock.findOne(anyLong())).
+		  thenReturn(new AreaAtuacao());
+			
+			_areaAtuacaoService.alterar(1, "xdd");
+			ArrayList<String>  listaMsg=_areaAtuacaoService.getListaMsg();
+			
+			assertTrue(listaMsg.size()==1);
+			assertTrue(listaMsg.contains(AreaAtuacaoService.NOME_PEQUENO));	
+	}
+	
+	@Test
+	public void alterar_falha_nome_grande_mensagem_nao_vazia()
+	{
+		 when(_repositorioMock.findOne(anyLong())).
+		  thenReturn(new AreaAtuacao());
+		 
+		  String nome=StringUtils.repeat('x', 101);
+			
+	     _areaAtuacaoService.alterar(1, nome); 
+		  ArrayList<String>  listaMsg=_areaAtuacaoService.getListaMsg();
+			
+			assertTrue(listaMsg.size()==1);
+			assertTrue(listaMsg.contains(AreaAtuacaoService.NOME_GRANDE));		
+	}
+	
+	@Test 
+	public void  alterar_sucesso_lista_mensagem_vazia()
+	{
+		 AreaAtuacao areaAtuacao= new AreaAtuacao();
+		
+		 
+		 when(_repositorioMock.findOne(anyLong())).
+		  thenReturn(areaAtuacao);
+		 
+		        
+	     
+	       
+			_areaAtuacaoService.alterar(1,"teste nome alterado");
+			ArrayList<String>  listaMsg=_areaAtuacaoService.getListaMsg();
+			 
+			assertTrue(listaMsg.isEmpty());
+			Mockito.verify(_repositorioMock).save(areaAtuacao);
+			
+	}
+	
+	
+	
+	private void _testaNomeVazio(boolean isInc,String nome)
+	{
+        if(isInc)
+        {
+        	 AreaAtuacao areaAtuacao= new AreaAtuacao();
+             areaAtuacao.setNome(nome);
+        	_areaAtuacaoService.novo(areaAtuacao);	
+        }
+        else
+        {
+        	_areaAtuacaoService.alterar(1, nome);  
+        }
+		
 		ArrayList<String>  listaMsg=_areaAtuacaoService.getListaMsg();
 		
-		assertTrue(!listaMsg.isEmpty());
-		assertTrue(listaMsg.contains(AreaAtuacaoService.NOME_N_INFORMADO));		
+		assertTrue("Lista Vazia", !listaMsg.isEmpty());
+		assertTrue("Nome Nao Informado+"+nome,listaMsg.contains(AreaAtuacaoService.NOME_N_INFORMADO));		
 	
 	}
 	
