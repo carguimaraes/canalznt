@@ -13,10 +13,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 //canalznt/api/
 @WebFilter("/api/*")
-public class WebApiAssociadoCadastroSeguranca implements Filter
+public class WebApiAssociadoSegurancaFilter implements Filter
 {
 	//X-CustomToken = GMA-1967
-	 public final String HEADER_SECURITY_TOKEN = "X-CustomToken"; 
+    public final String HEADER_SECURITY_TOKEN = "X-CustomToken"; 
 	
 	
 	public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException 

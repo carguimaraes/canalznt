@@ -30,14 +30,9 @@ import com.digicastservices.canalznt.webapi.service.AssociadoWebApiService;
 @RequestMapping("api/v1")
 public class AreaAtuacaoController {
 	
-	private  AreaAtuacaoWebApiService _areaAtuacaoWebApiService;
-	
 	@Autowired
-	public void setAreaAtuacaoWebApiService(AreaAtuacaoWebApiService areaAtuacaoWebApiService)
-	{
-		this._areaAtuacaoWebApiService=areaAtuacaoWebApiService;
-	}
-	
+	private  AreaAtuacaoWebApiService _areaAtuacaoWebApiService;
+		
 	@RequestMapping(value = "/areasatuacao/", method = RequestMethod.GET)
     public ResponseEntity<Object> getListAreaAtuacao() 
 	{

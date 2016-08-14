@@ -23,7 +23,7 @@ import com.digicastservices.canalznt.model.dao.IAreaAtuacaoRepositorio;
 import com.digicastservices.canalznt.model.entity.AreaAtuacao;
 import com.digicastservices.canalznt.model.service.AreaAtuacaoService;
 
- 
+//http://junit.sourceforge.net/javadoc/org/junit/Assert.html
 public class AreaAtuacaoServiceTest 
 {
 	@InjectMocks 

@@ -20,7 +20,7 @@ public class AreaAtuacaoWebApiService
 	 @Autowired
 	 private  AreaAtuacaoService _areaAtuacaoService;
 	 @Autowired
-	  private  IAreaAtuacaoRepositorio _repositorio;
+	 private  IAreaAtuacaoRepositorio _repositorio;
 	 
 	  public  ApiServiceRetorno criarAreaAtuacao(AreaAtuacaoDto areaAtuacaoDto)
 		{
@@ -45,20 +45,29 @@ public class AreaAtuacaoWebApiService
 		}
 		
 		
-		public  ApiServiceRetorno alterarAreaAtuacao(AreaAtuacaoDto areaAtuacaoDto, long id)
-		{
+	  public  ApiServiceRetorno alterarAreaAtuacao(AreaAtuacaoDto areaAtuacaoDto, long id)
+	  {
 			   AreaAtuacao a=  _repositorio.findOne(id);
 			   if(a==null)
 			   {
 				   return ApiServiceRetorno.FalhaRetornoVazioOuNaoEncontrado(new String[] {"Area de atuação não encontrada"});
 			   }
 			 
-			 a.setNome(areaAtuacaoDto.nome);
-		 
+			   _areaAtuacaoService.alterar(id, areaAtuacaoDto.nome);  
+				
+				if( _areaAtuacaoService.getListaMsg().isEmpty())
+				{
+					return ApiServiceRetorno.getApiServiceRetorno(HttpStatus.OK, null);
+				}
+				else
+				{
+					
+					return ApiServiceRetorno.FalhaValidacaoSolicitacao(
+							 _areaAtuacaoService.getListaMsg().toArray(new String[_areaAtuacaoService.getListaMsg().size()])
+							);
+				}
 			 
-			 _repositorio.save(a);
-			
-			return ApiServiceRetorno.getApiServiceRetorno(HttpStatus.OK , null);
+			  
 		}
 				
 		

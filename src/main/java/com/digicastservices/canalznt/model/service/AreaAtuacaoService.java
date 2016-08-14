@@ -9,6 +9,8 @@ import com.digicastservices.canalznt.model.dao.IAreaAtuacaoRepositorio;
 import com.digicastservices.canalznt.model.entity.AreaAtuacao;
 import com.digicastservices.canalznt.model.entity.Associado;
 
+
+
 @Service
 public class AreaAtuacaoService 
 {
@@ -22,11 +24,9 @@ public class AreaAtuacaoService
   @Autowired
   private  IAreaAtuacaoRepositorio _repositorio;
   
- // @Autowired
-  //public AreaAtuacaoService(IAreaAtuacaoRepositorio repositorio)
+
   public AreaAtuacaoService()
   {
-//	  _repositorio=repositorio;
 	  _listaMsg= new ArrayList<String>();
   }
   
@@ -40,6 +40,7 @@ public class AreaAtuacaoService
 	  
     if(!validar(areaAtuacao.getNome())) return;
 	  
+    areaAtuacao.setNome(areaAtuacao.getNome().trim());
 	 _repositorio.save(areaAtuacao);
   }
   
@@ -57,7 +58,7 @@ public class AreaAtuacaoService
 	  
 	  if(!validar(nome)) return;
 	
-	  areaAtuacao.setNome(nome);
+	  areaAtuacao.setNome(nome.trim());
 	  _repositorio.save(areaAtuacao);
 	  
   }
