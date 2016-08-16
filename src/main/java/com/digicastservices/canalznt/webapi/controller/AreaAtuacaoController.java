@@ -17,38 +17,35 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import com.digicastservices.canalznt.webapi.dto.AreaAtuacaoDto;
 import com.digicastservices.canalznt.webapi.dto.AssociadoDto;
 import com.digicastservices.canalznt.webapi.service.ApiServiceRetorno;
+import com.digicastservices.canalznt.webapi.service.AreaAtuacaoWebApiService;
 import com.digicastservices.canalznt.webapi.service.AssociadoWebApiService;
 
 
 
-//http://localhost:8088/canalznt/api/v1/associados
+//http://localhost:8088/canalznt/api/v1/areasatuacao
 @RestController
 @RequestMapping("api/v1")
-public class AssociadoController {
-	
-	private  AssociadoWebApiService _associadoWebApiService;
+public class AreaAtuacaoController {
 	
 	@Autowired
-	public void setAssociadoNovoService(AssociadoWebApiService associadoWebApiService)
-	{
-		this._associadoWebApiService=associadoWebApiService;
-	}
-	
-	@RequestMapping(value = "/associados/", method = RequestMethod.GET)
-    public ResponseEntity<Object> getListaAssociado() 
+	private  AreaAtuacaoWebApiService _areaAtuacaoWebApiService;
+		
+	@RequestMapping(value = "/areasatuacao/", method = RequestMethod.GET)
+    public ResponseEntity<Object> getListAreaAtuacao() 
 	{
 	     
-		 ApiServiceRetorno s=  _associadoWebApiService.getListaAssociado();
+		 ApiServiceRetorno s=  _areaAtuacaoWebApiService.getListaAreaAtuacao();
 		 
          return new ResponseEntity<Object>(s.ObterRetorno(), s.ObterHttpStatusCode());
     }
 	
-    @RequestMapping(value = "/associados/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Object> getAssociado(@PathVariable("id") long id) 
+    @RequestMapping(value = "/areasatuacao/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Object> getAreaAtuacao(@PathVariable("id") long id) 
     {
-	  	 ApiServiceRetorno s=  _associadoWebApiService.getAssociado(id);
+	  	 ApiServiceRetorno s=  _areaAtuacaoWebApiService.getAreaAtuacao(id);
 	   	 return new ResponseEntity<Object>(s.ObterRetorno(), s.ObterHttpStatusCode());
 	 }
 	 
@@ -56,18 +53,18 @@ public class AssociadoController {
     // Deve ser colocado no Header
     //  Content-Type - application/json
 	//
-    @RequestMapping(value = "/associados/", method = RequestMethod.POST,  consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Object>criarAssociado(@RequestBody AssociadoDto associadoDto) 
+    @RequestMapping(value = "/areasatuacao/", method = RequestMethod.POST,  consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Object>criarAreaAtuacao(@RequestBody AreaAtuacaoDto areaAtuacaoDto) 
     {
-	 ApiServiceRetorno s=  _associadoWebApiService.criarAssociado(associadoDto);
+	 ApiServiceRetorno s=  _areaAtuacaoWebApiService.criarAreaAtuacao(areaAtuacaoDto);
 	     
      return new ResponseEntity<Object>(s.ObterRetorno(), s.ObterHttpStatusCode());
 	 }
     
-    @RequestMapping(value = "/associados/{id}", method = RequestMethod.PUT,  consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Object>alterarAssociado(@RequestBody AssociadoDto associadoDto,@PathVariable("id") long id) 
+    @RequestMapping(value = "/areasatuacao/{id}", method = RequestMethod.PUT,  consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Object>alterarAssociado(@RequestBody AreaAtuacaoDto areaAtuacaoDto,@PathVariable("id") long id) 
     {
-	 ApiServiceRetorno s=  _associadoWebApiService.alterarAssociado(associadoDto,id);
+	 ApiServiceRetorno s=  _areaAtuacaoWebApiService.alterarAreaAtuacao(areaAtuacaoDto,id);
 	     
      return new ResponseEntity<Object>(s.ObterRetorno(), s.ObterHttpStatusCode());
 	 }

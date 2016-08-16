@@ -8,12 +8,12 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="ASSOCIADO_TB")
-public class Associado {
-
+@Table(name="AREA_ATUACAO_TB")
+public class AreaAtuacao 
+{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="ID_ASSOCIADO")
+	@Column(name="ID_AREA_ATUACAO")
 	private long id;
  
 	@Column(name="NOME")	
@@ -23,7 +23,7 @@ public class Associado {
 		return id;
 	}
  
-	private void setId(long id) {
+	private void setId(long  id) {
 		this.id = id;
 	}
  
@@ -34,6 +34,4 @@ public class Associado {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-
-
 }
