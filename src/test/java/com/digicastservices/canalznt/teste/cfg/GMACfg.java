@@ -28,6 +28,7 @@ public class GMACfg
     public IAreaAtuacaoRepositorio nameService() {
         //return Mockito.mock(IAreaAtuacaoRepositorio.class);
         //Teste ajsute 
+		//Teste ajuste git xxx
         return beanA;
     }
 }
