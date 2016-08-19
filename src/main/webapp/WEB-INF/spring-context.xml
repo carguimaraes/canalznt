@@ -33,7 +33,7 @@
 	<bean id="mysqlDataSource" class="org.apache.commons.dbcp.BasicDataSource"><!-- Nome e classe -->
     	<property name="driverClassName" value="com.mysql.jdbc.Driver"/> <!-- um class.forname -->
     	<property name="url" value="jdbc:mysql://localhost/canalznt_db"/> <!-- caminho do banco -->
-    	<property name="username" value="root"/><!-- username -->
+    	<property name="username" value="userznt"/><!-- username -->
     	<property name="password" value=""/> <!-- senha -->
 	</bean>
 	
