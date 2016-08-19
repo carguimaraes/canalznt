@@ -27,7 +27,7 @@ public class GMACfg
 	@Bean
     public IAreaAtuacaoRepositorio nameService() {
         //return Mockito.mock(IAreaAtuacaoRepositorio.class);
-        
+        //Teste ajsute 
         return beanA;
     }
 }
