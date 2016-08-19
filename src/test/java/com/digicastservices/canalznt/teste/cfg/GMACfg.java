@@ -31,4 +31,9 @@ public class GMACfg
 		//Teste ajuste git xxx
         return beanA;
     }
+	
+	private void nada()
+	{
+		//Teste para inettação continua 004
+	}
 }
