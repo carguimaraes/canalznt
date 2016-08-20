@@ -170,8 +170,8 @@
 				<version>2.2.1</version>
 				<configuration>
 					<url>jdbc:mysql://localhost:3306/canalznt_db</url>
-					<user>root </user>
-					<password>123</password>
+					<user>userznt</user>
+					<password></password>
 				</configuration>
 				<dependencies>
 					<dependency>
