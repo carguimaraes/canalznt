@@ -12,6 +12,14 @@
    <!-- entidade mapeada // http://localhost:8088/jpamodelo/ola1 -->
    <class>com.digicastservices.canalznt.model.entity.Membro</class>
    <class>com.digicastservices.canalznt.model.entity.Associado</class>
+   <class>com.digicastservices.canalznt.model.entity.Pessoa</class>
+   <class>com.digicastservices.canalznt.model.entity.Uf</class>
+   <class>com.digicastservices.canalznt.model.entity.Localidade</class>
+   <class>com.digicastservices.canalznt.model.entity.Bairro</class>
+   <class>com.digicastservices.canalznt.model.entity.TipoLogradouro</class>
+   <class>com.digicastservices.canalznt.model.entity.Logradouro</class>
+   <class>com.digicastservices.canalznt.model.entity.Enderecos</class>
+   <exclude-unlisted-classes>true</exclude-unlisted-classes>
 
    <properties>
   <!-- dados da conexao -->

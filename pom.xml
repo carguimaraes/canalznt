@@ -12,7 +12,7 @@
 		<org.springframework.version>4.0.3.RELEASE</org.springframework.version>
 		<jpa.version>1.2.0.RELEASE</jpa.version>
 	    <project.build.sourceEncoding>Cp1252</project.build.sourceEncoding>
- 
+
  </properties>
   
   <dependencies>
@@ -162,7 +162,6 @@
         <configuration>
           <source>1.8</source>
           <target>1.8</target>
-           <encoding>Cp1252</encoding>
         </configuration>
       </plugin>
     <plugin>
@@ -171,8 +170,8 @@
 				<version>2.2.1</version>
 				<configuration>
 					<url>jdbc:mysql://localhost:3306/canalznt_db</url>
-					<user>userznt</user>
-					 <password></password>
+					<user>root </user>
+					<password>123</password>
 				</configuration>
 				<dependencies>
 					<dependency>

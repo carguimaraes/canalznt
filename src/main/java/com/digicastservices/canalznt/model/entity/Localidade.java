@@ -1,19 +1,36 @@
 package com.digicastservices.canalznt.model.entity;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-@Table(name="localidade_tb")
+@Entity
+@Table(name="LOCALIDADE_TB")
 public class Localidade {
-
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="ID_LOCALIDADE")
 	private long     id;
-	private String   descricao;
+
+	@ManyToOne
+	@JoinColumn(name="FK_ID_UF")
 	private Uf       uf;
+	
+	@Column(name="CEP")
 	private String   cep;
 	
-	@Column(name="id")
+	@Column(name="DESCRICAO")
+	private String   descricao;
+
+	
+	
+	
 	public long getId() {
 		return id;
 	}
@@ -21,7 +38,6 @@ public class Localidade {
 		this.id = id;
 	}
 	
-	@Column(name="descricao")
 	public String getDescricao() {
 		return descricao;
 	}
@@ -29,16 +45,13 @@ public class Localidade {
 		this.descricao = descricao;
 	}
 	
-	@ManyToOne
-	@JoinColumn(name="fk_id_uf")
 	public Uf getUf() {
 		return uf;
 	}
 	public void setUf(Uf uf) {
 		this.uf = uf;
 	}
-	
-	@Column(name="cep")
+
 	public String getCep() {
 		return cep;
 	}

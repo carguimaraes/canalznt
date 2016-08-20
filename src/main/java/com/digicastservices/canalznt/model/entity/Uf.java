@@ -1,27 +1,40 @@
 package com.digicastservices.canalznt.model.entity;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Table(name="uf_tb")
+
+@Entity
+@Table(name="UF_TB")
 public class Uf {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="ID_UF")
+	private long id;
 	
-	private long   id;
+	@Column(name="UF")
 	private String uf;
+	
+	@Column(name="DESCRICAO")
 	private String descricao;
+	
+	@Column(name="CEPINICIAL")
 	private String cepInicial;
+	
+	@Column(name="CEPFINAL")
 	private String cepFinal;
 	
-	@Column(name="id")
+
+	
 	public long getId() {
 		return id;
 	}
-	public void setId(long id) {
-		this.id = id;
-	}
-	
-	@Column(name="uf")
+
 	public String getUf() {
 		return uf;
 	}
@@ -29,15 +42,13 @@ public class Uf {
 		this.uf = uf;
 	}
 	
-	@Column(name="descricao")
 	public String getDescricao() {
 		return descricao;
 	}
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-	
-	@Column(name="cepInicial")
+
 	public String getCepInicial() {
 		return cepInicial;
 	}
@@ -45,15 +56,12 @@ public class Uf {
 		this.cepInicial = cepInicial;
 	}
 	
-	@Column(name="cepFinal")
 	public String getCepFinal() {
 		return cepFinal;
 	}
 	public void setCepFinal(String cepFinal) {
 		this.cepFinal = cepFinal;
 	}
-	
-	
 	
 	
 }

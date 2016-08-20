@@ -1,37 +1,64 @@
 package com.digicastservices.canalznt.model.entity;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-@Table(name="logradouro_tb")
+@Entity
+@Table(name="LOGRADOURO_TB")
 public class Logradouro {
 	
-	private Long           id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="ID_LOGRADOURO")
+	private Long id;
+	
+	@ManyToOne
+	@JoinColumn(name="FK_ID_TIPO_LOGRADOURO")
 	private TipoLogradouro tipoLogradouro;
-	private Localidade     localidade;
-	private String         descricao;
-	private Uf             uf;
-	private String         cep;
-	private Bairro         bairro;
-	private String         numInicio;
-	private String         numFinal;
-	private boolean        par;
-	private boolean        impar;
 	
+	@ManyToOne
+	@JoinColumn(name="FK_ID_LOCALIDADE")
+	private Localidade localidade;
 	
+	@ManyToOne
+	@JoinColumn(name="FK_ID_BAIRRO")
+	private Bairro bairro;	
 	
-	@Column(name="id")
+	@ManyToOne
+	@JoinColumn(name="FK_ID_UF")
+	private Uf uf;
+	
+	@Column(name="NUMINICIO")
+	private Long numInicio;
+	
+	@Column(name="NUMFINAL")
+	private Long numFinal;
+	
+	@Column(name="PAR")
+	private boolean par;
+	
+	@Column(name="IMPAR")
+	private boolean impar;
+	
+	@Column(name="CEP")
+	private String cep;
+	
+	@Column(name="DESCRICAO")
+	private String descricao;
+	
+
+
+
 	public Long getId() {
 		return id;
 	}
-	public void setId(Long id) {
-		this.id = id;
-	}
-	
-	@ManyToOne
-	@JoinColumn(name="fk_id_tipoLogradouro")
+
 	public TipoLogradouro getTipoLogradouro() {
 		return tipoLogradouro;
 	}
@@ -39,8 +66,6 @@ public class Logradouro {
 		this.tipoLogradouro = tipoLogradouro;
 	}
 	
-	@ManyToOne
-	@JoinColumn(name="fk_id_localidade")
 	public Localidade getLocalidade() {
 		return localidade;
 	}
@@ -48,16 +73,13 @@ public class Logradouro {
 		this.localidade = localidade;
 	}
 	
-	@Column(name="descricao")
-	public String getDescricao() {
-		return descricao;
+	public Bairro getBairro() {
+		return bairro;
 	}
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
-	}
+	public void setBairro(Bairro bairro) {
+		this.bairro = bairro;
+	}	
 	
-	@ManyToOne
-	@JoinColumn(name="fk_id_uf")
 	public Uf getUf() {
 		return uf;
 	}
@@ -65,48 +87,27 @@ public class Logradouro {
 		this.uf = uf;
 	}
 	
-	@Column(name="cep")
-	public String getCep() {
-		return cep;
-	}
-	public void setCep(String cep) {
-		this.cep = cep;
-	}
-	
-	@ManyToOne
-	@JoinColumn(name="fk_id_bairro")
-	public Bairro getBairro() {
-		return bairro;
-	}
-	public void setBairro(Bairro bairro) {
-		this.bairro = bairro;
-	}
-	
-	@Column(name="numInicio")
-	public String getNumInicio() {
+	public Long getNumInicio() {
 		return numInicio;
 	}
-	public void setNumInicio(String numInicio) {
+	public void setNumInicio(Long numInicio) {
 		this.numInicio = numInicio;
 	}
-	
-	@Column(name="numFinal")
-	public String getNumFinal() {
+
+	public Long getNumFinal() {
 		return numFinal;
 	}
-	public void setNumFinal(String numFinal) {
+	public void setNumFinal(Long numFinal) {
 		this.numFinal = numFinal;
 	}
-	
-	@Column(name="par")
+
 	public boolean isPar() {
 		return par;
 	}
 	public void setPar(boolean par) {
 		this.par = par;
 	}
-	
-	@Column(name="impar")
+
 	public boolean isImpar() {
 		return impar;
 	}
@@ -114,10 +115,19 @@ public class Logradouro {
 		this.impar = impar;
 	}
 	
-	
-	
-	
-	
-	
-	
+	public String getCep() {
+		return cep;
+	}
+	public void setCep(String cep) {
+		this.cep = cep;
+	}
+
+	public String getDescricao() {
+		return descricao;
+	}
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
+
 }

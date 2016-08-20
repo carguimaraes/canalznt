@@ -1,22 +1,41 @@
 package com.digicastservices.canalznt.model.entity;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-@Table(name="bairro_tb")
+@Entity
+@Table(name="BAIRRO_TB")
 public class Bairro {
 	
-	private long       id;
-	private Uf         uf;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="ID_BAIRRO")
+	private long id;
+
+	@JoinColumn(name="FK_ID_UF")
+	private Uf uf;
+	
+	@ManyToOne
+	@JoinColumn(name="FK_ID_LOCALIDADE")
 	private Localidade localidade;
+	
+	@Column(name="CEPINICIAL")
+	private String cepInicial;
+	
+	@Column(name="CEPFINAL")
+	private String cepFinal;
+	
+	@Column(name="DESCRICAO")
 	private String     descricao;
-	private String     cepInicial;
-	private String     cepFinal;
 	
+
 	
-	@Column(name="id")
 	public long getId() {
 		return id;
 	}
@@ -24,8 +43,6 @@ public class Bairro {
 		this.id = id;
 	}
 	
-	@ManyToOne
-	@JoinColumn(name="fk_id_uf")
 	public Uf getUf() {
 		return uf;
 	}
@@ -33,24 +50,13 @@ public class Bairro {
 		this.uf = uf;
 	}
 	
-	@ManyToOne
-	@JoinColumn(name="fk_id_localidade")
 	public Localidade getLocalidade() {
 		return localidade;
 	}
 	public void setLocalidade(Localidade localidade) {
 		this.localidade = localidade;
 	}
-	
-	@Column(name="descricao")
-	public String getDescricao() {
-		return descricao;
-	}
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
-	}
-	
-	@Column(name="cepInicial")
+
 	public String getCepInicial() {
 		return cepInicial;
 	}
@@ -58,7 +64,6 @@ public class Bairro {
 		this.cepInicial = cepInicial;
 	}
 	
-	@Column(name="cepFinal")
 	public String getCepFinal() {
 		return cepFinal;
 	}
@@ -66,7 +71,12 @@ public class Bairro {
 		this.cepFinal = cepFinal;
 	}
 	
-	
+	public String getDescricao() {
+		return descricao;
+	}
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
 	
 	
 }
