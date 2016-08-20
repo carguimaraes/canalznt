@@ -5,6 +5,7 @@ import static org.junit.Assert.assertTrue;
 import java.util.ArrayList;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.MockitoAnnotations;
@@ -29,7 +30,7 @@ public class AssociadoServiceTest
 	 /**************************************************************
 	  *  NOVO (CRIAR)
 	  **************************************************************/
-	@Test 
+	@Ignore
 	public void  novo_falha_nome_nao_informado_null_lista_mensagem_nao_vazia()
 	{
 		
