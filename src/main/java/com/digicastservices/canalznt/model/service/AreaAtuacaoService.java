@@ -1,23 +1,20 @@
 package com.digicastservices.canalznt.model.service;
 
-import java.util.ArrayList;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.digicastservices.canalznt.model.dao.IAreaAtuacaoRepositorio;
 import com.digicastservices.canalznt.model.entity.AreaAtuacao;
-import com.digicastservices.canalznt.model.entity.Associado;
 
 
 
 @Service
 public class AreaAtuacaoService extends AbstractService
 {
-  public static final String NOME_N_INFORMADO = "Nome não foi informado";
+  public static final String NOME_N_INFORMADO = "Nome nï¿½o foi informado";
   public static final String NOME_PEQUENO = "Nome muito pequeno (<5)";
   public static final String NOME_GRANDE = "Nome muito grande (>100)";
-  public static final String AREA_ATUACAO_N_ENCONTRADA = "Area atuação não encontrada";
+  public static final String AREA_ATUACAO_N_ENCONTRADA = "Area atuaï¿½ï¿½o nï¿½o encontrada";
 	
  
   @Autowired
