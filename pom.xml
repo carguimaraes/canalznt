@@ -13,7 +13,7 @@
 		<jpa.version>1.2.0.RELEASE</jpa.version>
 		
 		 
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.build.sourceEncoding>Cp1252</project.build.sourceEncoding>
  
  </properties>
   
@@ -168,7 +168,7 @@
         <configuration>
           <source>1.8</source>
           <target>1.8</target>
-           <encoding>UTF-8</encoding>
+           <encoding>Cp1252</encoding>
         </configuration>
       </plugin>
     <plugin>
