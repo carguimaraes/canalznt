@@ -5,15 +5,13 @@
   <artifactId>canalznt</artifactId>
   <packaging>war</packaging>
   <version>0.0.1-SNAPSHOT</version>
-  <name>canalznt Maven Webapp</name>
+  <name>canalznt Maven Webapp 01</name>
   <url>http://maven.apache.org</url>
   
    <properties>
 		<org.springframework.version>4.0.3.RELEASE</org.springframework.version>
 		<jpa.version>1.2.0.RELEASE</jpa.version>
-		
-		 
-    <project.build.sourceEncoding>Cp1252</project.build.sourceEncoding>
+	    <project.build.sourceEncoding>Cp1252</project.build.sourceEncoding>
  
  </properties>
   
