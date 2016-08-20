@@ -18,19 +18,39 @@ public class Pessoa {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 
-	private Long       id;
-	private String     nome;
-	private String     cgccpf;
+	@Column(name="ID_PESSOA")
+	private Long id;
+	
+	@Column(name="NOME")
+	private String nome;
+	
+	@Column(name="CGCCPF")
+	private String cgccpf;
+	
+	@Enumerated(EnumType.STRING)
+	@Column(name="TIPOPESSOA")
 	private TipoPessoa tipoPessoa;
-	private String     senha;
-	private String     email;
-	private String     lembrete;
-	private String     resposta;
+	
+	@Column(name="SENHA")
+	private String senha;
+	
+	@Column(name="EMAIL")
+	private String email;
+	
+	@Column(name="LEMBRETE")
+	private String lembrete;
+	
+	@Column(name="RESPOSTA")
+	private String resposta;
+	
+	@Column(name="DATACADASTRO")
 	private Calendar   dataCadastro;
+	
+	@Column(name="DATAALTERACAO")
 	private Calendar   dataAlteracao;
 	
 	
-	@Column(name="ID")
+
 	public Long getId() {
 		return id;
 	}
@@ -38,7 +58,6 @@ public class Pessoa {
 		this.id = id;
 	}
 	
-	@Column(name="ID_PESSOA")
 	public String getNome() {
 		return nome;
 	}
@@ -46,7 +65,6 @@ public class Pessoa {
 		this.nome = nome;
 	}
 	
-	@Column(name="CGCCPF")
 	public String getCgccpf() {
 		return cgccpf;
 	}
@@ -54,8 +72,6 @@ public class Pessoa {
 		this.cgccpf = cgccpf;
 	}
 	
-	@Enumerated(EnumType.STRING)
-	@Column(name="TIPOPESSOA")
 	public TipoPessoa getTipoPessoa() {
 		return tipoPessoa;
 	}
@@ -63,7 +79,6 @@ public class Pessoa {
 		this.tipoPessoa = tipoPessoa;
 	}
 	
-	@Column(name="SENHA")
 	public String getSenha() {
 		return senha;
 	}
@@ -71,7 +86,6 @@ public class Pessoa {
 		this.senha = senha;
 	}
 	
-	@Column(name="EMAIL")
 	public String getEmail() {
 		return email;
 	}
@@ -79,7 +93,6 @@ public class Pessoa {
 		this.email = email;
 	}
 	
-	@Column(name="LEMBRETE")
 	public String getLembrete() {
 		return lembrete;
 	}
@@ -87,15 +100,13 @@ public class Pessoa {
 		this.lembrete = lembrete;
 	}
 	
-	@Column(name="RESPOSTA")
 	public String getResposta() {
 		return resposta;
 	}
 	public void setResposta(String resposta) {
 		this.resposta = resposta;
 	}
-	
-	@Column(name="DATACADASTRO")
+
 	public Calendar getDataCadastro() {
 		return dataCadastro;
 	}
@@ -103,7 +114,6 @@ public class Pessoa {
 		this.dataCadastro = dataCadastro;
 	}
 	
-	@Column(name="DATAALTERACAO")
 	public Calendar getDataAlteracao() {
 		return dataAlteracao;
 	}
